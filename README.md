@@ -3,7 +3,9 @@ Simplified Lipa Na MPESA Online integration.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+Please read [USING.md](https://gist.github.com/maukoese/b24679402957c63ec426) for details on how to integrate this class in your custom project.
+
+There is sample code in [use.php](#) to get you started
 
 ### Prerequisites
 

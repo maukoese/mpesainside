@@ -313,22 +313,23 @@ class MPESA{
 	}
 
 	public function errors(){
-		$postData = = file_get_contents('php://input');
-	    //perform your processing here, e.g. log to file....
-	    $file = fopen("log.txt", "w"); //url fopen should be allowed for this to occur
-	    if(fwrite($file, $postData) === FALSE)
-	    {
-	        fwrite("Error: no data written");
-	    }
-
-	    fwrite("\r\n");
-	    fclose($file);
-
+		$postData = file_get_contents('php://input');
 	    
+	    $errors = json_decode( $postData, true );
 	    return $errors;
 
-	    echo '{"ResultCode": 0, "ResultDesc": "The service was accepted successfully", "ThirdPartyTransID": "1234567890"}';
+	    //perform your processing here, e.g. log to file....
+	//     $file = fopen("log.txt", "w"); //url fopen should be allowed for this to occur
+	//     if(fwrite($file, $postData) === FALSE)
+	//     {
+	//         fwrite("Error: no data written");
+	//     }
 
-	}
+	//     fwrite("\r\n");
+	//     fclose($file);
+
+	//     $errors = array( "ResultCode" => 0, "ResultDesc" => "The service was accepted successfully", "ThirdPartyTransID" => "1234567890" );
+	//     return $errors;
+	 }
 
 }
