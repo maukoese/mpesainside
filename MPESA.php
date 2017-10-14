@@ -323,9 +323,10 @@ class MPESA{
 	public function errors(){
 		$this -> authenticate();
 		$postData = file_get_contents('php://input');
+		return $postData;
 	    
-	    $errors = json_decode( $postData, true );
-	    return $errors;
+	    // $errors = json_decode( $postData, true );
+	    // return $errors;
 
 	    //perform your processing here, e.g. log to file....
 	//     $file = fopen("log.txt", "w"); //url fopen should be allowed for this to occur
