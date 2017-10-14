@@ -1,5 +1,11 @@
-<?php 
+<?php
 
+/**
+* HTTP Header Parameters
+*
+* Authorization	OAuth 2.0 Access Token. Bearer keyword followed by a space and the OAuth 2.0 Access Token. Bearer <Access-Token>
+* Content-Type	Only application/json content type is supported.
+**/
 class MPESA{
 
 	private business;
@@ -13,7 +19,7 @@ class MPESA{
 	private confirmation_url;
 	private validation_url;
 
-	public function __construct( $name, $shortcode, $key, $secret, $pass, $public_key, $timeout_url, $result_url, $confirmation_url, $validation_url ){
+	public function __construct( $name, $shortcode, $secret, $pass, $public_key, $timeout_url, $result_url, $confirmation_url, $validation_url, $key = "cert.cr" ){
 		$this -> business = $name;
 		$this -> shortcode = $shortcode;
 		$this -> key = $key;
