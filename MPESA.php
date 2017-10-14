@@ -55,6 +55,7 @@ class MPESA{
 	}
 
 	private function b2cRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $Remarks = "", $Occasion = "" ){
+		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest';
 
 		$curl = curl_init();
@@ -89,6 +90,7 @@ class MPESA{
 	}
 
 	private function b2bRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $SenderIdentifierType, $RecieverIdentifierType, $AccountReference, $Remarks = "", $Occasion = "" ){
+		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest';
 
 		$curl = curl_init();
@@ -125,6 +127,7 @@ class MPESA{
 	}
 
 	private function c2bRequest( $ResponseType = "Application/json" ){
+		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
 
 		$curl = curl_init();
@@ -153,6 +156,7 @@ class MPESA{
 	}
 
 	public function simulate(){
+		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
 
 		$curl = curl_init();
@@ -181,6 +185,7 @@ class MPESA{
 	}
 
 	function accountBalance(){
+		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query';
 
 		$curl = curl_init();
@@ -214,6 +219,7 @@ class MPESA{
 	}
 
 	public function reverseTransaction( $value='' ){
+		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request';
 
 		$curl = curl_init();
@@ -250,6 +256,7 @@ class MPESA{
 	}
 
 	public function queryRequest( $value='' ){
+		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query';
 
 		$curl = curl_init();
@@ -279,6 +286,7 @@ class MPESA{
 
 
 	function transactionStatus(){
+		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query';
 
 		$curl = curl_init();
@@ -313,6 +321,7 @@ class MPESA{
 	}
 
 	public function errors(){
+		$this -> authenticate();
 		$postData = file_get_contents('php://input');
 	    
 	    $errors = json_decode( $postData, true );
