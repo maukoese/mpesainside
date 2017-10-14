@@ -19,17 +19,17 @@ class MPESA{
 	private confirmation_url;
 	private validation_url;
 
-	public function __construct( $name, $shortcode, $secret, $pass, $public_key, $timeout_url, $result_url, $confirmation_url, $validation_url, $key = "cert.cr" ){
-		$this -> business = $name;
-		$this -> shortcode = $shortcode;
-		$this -> key = $key;
-		$this -> secret = $secret;
-		$this -> password = $pass;
+	public function __construct( $public_key = "cert.cr" ){
+		$this -> business = MPESA_NAME;
+		$this -> shortcode = MPESA_SHORTCODE;
+		$this -> key = MPESA_KEY;
+		$this -> secret = MPESA_SECRET;
+		$this -> password = MPESA_PASSWORD;
 		$this -> publicKey = $public_key;
-		$this -> timeout_url = $timeout_url;
-		$this -> result_url = $result_url;
-		$this -> confirmation_url = $confirmation_url;
-		$this -> validation_url = $validation_url;
+		$this -> timeout_url = MPESA_TIMEOUT_URL;
+		$this -> result_url = MPESA_RESULT_URL;
+		$this -> confirmation_url = MPESA_CONFIRMATION_URL;
+		$this -> validation_url = MPESA_VALIDATION_URL;
 	}
 
 	private function authenticate(){
@@ -54,7 +54,7 @@ class MPESA{
 		return base64_encode( $encrypted );
 	}
 
-	private function b2cRequest( $initiator, $CommandID, $Amount, $PartyB, $Remarks = "", $Occasion = "" ){
+	private function b2cRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $Remarks = "", $Occasion = "" ){
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest';
 
 		$curl = curl_init();
@@ -88,7 +88,7 @@ class MPESA{
 		return $curl_response;
 	}
 
-	private function b2bRequest( $initiator, $CommandID, $Amount, $PartyB, $SenderIdentifierType, $RecieverIdentifierType, $AccountReference, $Remarks = "", $Occasion = "" ){
+	private function b2bRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $SenderIdentifierType, $RecieverIdentifierType, $AccountReference, $Remarks = "", $Occasion = "" ){
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest';
 
 		$curl = curl_init();
@@ -124,7 +124,7 @@ class MPESA{
 		return $curl_response;
 	}
 
-	private function c2b( $ResponseType = "Application/json" ){
+	private function c2bRequest( $ResponseType = "Application/json" ){
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
 
 		$curl = curl_init();
@@ -312,7 +312,7 @@ class MPESA{
 		echo $curl_response;
 	}
 
-	public function errors($value=''){
+	public function errors(){
 		$postData = = file_get_contents('php://input');
 	    //perform your processing here, e.g. log to file....
 	    $file = fopen("log.txt", "w"); //url fopen should be allowed for this to occur
@@ -323,6 +323,9 @@ class MPESA{
 
 	    fwrite("\r\n");
 	    fclose($file);
+
+	    
+	    return $errors;
 
 	    echo '{"ResultCode": 0, "ResultDesc": "The service was accepted successfully", "ThirdPartyTransID": "1234567890"}';
 

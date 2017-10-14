@@ -56,8 +56,8 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Material Design](http://material.io/) - The web framework used
-* [JQuery](https://code.google.com/jquery/) - Dependency Management
+* [PHP](http://php.net) -PHP Hypertext Preprocessor
+* [JavaScript](https://javascript.net) - JavaScript
 
 ## Contributing
 
@@ -65,7 +65,7 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [CalVer]( http://calver.org ) for versioning. For the versions available, see the [tags on this repository](https://github.com/maukoese/jabali/tags). 
+We use [CalVer]( http://calver.org ) for versioning. For the versions available, see the [tags on this repository](https://github.com/maukoese/mpesapay/tags). 
 
 ## Authors
 
@@ -75,7 +75,7 @@ See also the list of [contributors](https://github.com/maukoese/jabali/contribut
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 
