@@ -1,10 +1,10 @@
 <?php
 
 /**
-* HTTP Header Parameters
-*
-* Authorization	OAuth 2.0 Access Token. Bearer keyword followed by a space and the OAuth 2.0 Access Token. Bearer <Access-Token>
-* Content-Type	Only application/json content type is supported.
+* @package MPESAOpay 
+* @version 0.0.1
+* @author Mauko Maunde < hi@mauko.co.ke >
+* @see https://developer.safaricom.co.ke
 **/
 class MPESA{
 
