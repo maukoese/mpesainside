@@ -3,34 +3,12 @@ Simplified Lipa Na MPESA Online integration.
 
 ## Getting Started
 
-Please read [USING.md](https://gist.github.com/maukoese/b24679402957c63ec426) for details on how to integrate this class in your custom project.
+There is sample code in [use.x] in the respective language directories to get you started
 
-There is sample code in [use.php](#) to get you started
-
-### Prerequisites
-
-A running PHP server.
-A database system - MySQL/MariaDB/SQLite/PostgreSQL/Mongo
-
-```
-Give examples
-```
 
 ### Installing
 
-Grab a copy of Jabali from here
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
+Grab a copy of the code from [here](#) and put the MPESA.php in a directory of your choice. Include the MPESA.php file in your code and follow the instructions set out in the howto.__ files
 
 ## Running the tests
 
@@ -39,18 +17,6 @@ Explain how to run the automated tests for this system
 ### Break down into end to end tests
 
 Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Deployment
 
