@@ -1,18 +1,25 @@
 <?php
 
-define( 'MPESA_NAME', '' );
-define('MPESA_SHORTCODE', '');
-define('MPESA_SECRET', '');
-define('MPESA_PASSWORD', '');
-define('MPESA_KEY', '');
-define('MPESA_TIMEOUT_URL', '');
-define('MPESA_RESULT_URL', '');
-define('MPESA_CONFIRMATION_URL', '');
-define('MPESA_VALIDATION_URL', '');
+/**
+* @package MPESAOpay 
+* @version 0.0.1
+* @author Mauko Maunde < hi@mauko.co.ke >
+* @see https://developer.safaricom.co.ke
+**/
+
+define( 'MPESA_NAME', 'Name' );
+define('MPESA_SHORTCODE', 'Shortcode');
+define('MPESA_SECRET', 'Secret');
+define('MPESA_PASSWORD', 'Password');
+define('MPESA_KEY', 'Key');
+define('MPESA_TIMEOUT_URL', 'http://yoururl.tld/timeout');
+define('MPESA_RESULT_URL', 'http://yoururl.tld/result');
+define('MPESA_CONFIRMATION_URL', 'http://yoururl.tld/confirmationt');
+define('MPESA_VALIDATION_URL', 'http://yoururl.tld/validation');
 
 require_once( 'MPESA.php' );
 
-$mpesa = new MPESA();
+$mpesa = new \Mauko\MPESA();
 
 /*
 * C2B

@@ -6,6 +6,9 @@
 * @author Mauko Maunde < hi@mauko.co.ke >
 * @see https://developer.safaricom.co.ke
 **/
+
+namespace Mauko;
+
 class MPESA{
 
 	private business;
@@ -19,7 +22,7 @@ class MPESA{
 	private confirmation_url;
 	private validation_url;
 
-	public function __construct( $public_key = "cert.cr" ){
+	public function __construct( $public_key = "cert.cr", $level = "sandbox" ){
 		$this -> business = MPESA_NAME;
 		$this -> shortcode = MPESA_SHORTCODE;
 		$this -> key = MPESA_KEY;
@@ -30,13 +33,24 @@ class MPESA{
 		$this -> result_url = MPESA_RESULT_URL;
 		$this -> confirmation_url = MPESA_CONFIRMATION_URL;
 		$this -> validation_url = MPESA_VALIDATION_URL;
+
+		if ( $level == "sandbox" ) {
+			$this -> authenticate_url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+			$this -> b2c_request_url = "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
+			$this -> b2b_request_url = 'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest';
+			$this -> c2b_request_url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
+			$this -> simulate_url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+			$this -> check_balance_url = 'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query';
+			$this -> reverse_transaction_url = 'https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request';
+			$this -> query_request_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query';
+		} else {
+		}
 	}
 
 	private function authenticate(){
-		$url = 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_URL, $this -> authenticate_url );
 		$credentials = base64_encode($this -> key.':'.$this -> secret );
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Basic '.$credentials)); //setting a custom header
 		curl_setopt($curl, CURLOPT_HEADER, true);
@@ -55,11 +69,10 @@ class MPESA{
 	}
 
 	private function b2cRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $Remarks = "", $Occasion = "" ){
-		$this -> authenticate();
-		$url = 'https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest';
+		//$this -> authenticate();
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_URL, $this -> b2c_request_url );
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
 
 
@@ -91,10 +104,9 @@ class MPESA{
 
 	private function b2bRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $SenderIdentifierType, $RecieverIdentifierType, $AccountReference, $Remarks = "", $Occasion = "" ){
 		$this -> authenticate();
-		$url = 'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest';
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_URL, $this -. b2b_request_url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
 
 
@@ -128,10 +140,9 @@ class MPESA{
 
 	private function c2bRequest( $ResponseType = "Application/json" ){
 		$this -> authenticate();
-		$url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_URL, $this -> c2b_request_url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
 
 
@@ -157,10 +168,9 @@ class MPESA{
 
 	public function simulate(){
 		$this -> authenticate();
-		$url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_URL, $this -> simulate_url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
 
 		$curl_post_data = array(
@@ -186,10 +196,9 @@ class MPESA{
 
 	function accountBalance(){
 		$this -> authenticate();
-		$url = 'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query';
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_URL, $this -> check_balance_url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
 
 
@@ -220,10 +229,9 @@ class MPESA{
 
 	public function reverseTransaction( $value='' ){
 		$this -> authenticate();
-		$url = 'https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request';
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_URL, $this -> reverse_transaction_url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
 
 
@@ -257,10 +265,9 @@ class MPESA{
 
 	public function queryRequest( $value='' ){
 		$this -> authenticate();
-		$url = 'https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query';
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_URL, $this -> query_request_url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
 
 
@@ -285,7 +292,7 @@ class MPESA{
 	}
 
 
-	function transactionStatus(){
+	public function transactionStatus(){
 		$this -> authenticate();
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query';
 
