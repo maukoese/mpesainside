@@ -1,0 +1,12 @@
+curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/json" -d "{
+  \"Initiator\": \" \",
+  \"SecurityCredential\": \" \",
+  \"CommandID\":\"TransactionStatusQuery\",
+  \"TransactionID\": \" \",
+  \"PartyA\": \" \",
+  \"IdentifierType\":\"1\",
+  \"ResultURL\":\"https://ip_address:port/result_url\",
+  \"QueueTimeOutURL\":\"https://ip_address:port/timeout_url\",
+  \"Remarks\": \" \",
+  \"Occasion\": \" \"
+}" "https://sandbox.safaricom.co.ke/mpesa/transactionstatus/v1/query"

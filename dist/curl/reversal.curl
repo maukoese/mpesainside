@@ -1,0 +1,13 @@
+curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/json" -d "{
+  \"Initiator\":\" \",
+  \"SecurityCredential\":\" \",
+  \"CommandID\":\"TransactionReversal\",
+  \"TransactionID\":\" \",
+  \"Amount\":\" \",
+  \"ReceiverParty\":\" \",
+  \"RecieverIdentifierType\":\"4\",
+  \"ResultURL\":\"https://ip_address:port/result_url\",
+  \"QueueTimeOutURL\":\"https://ip_address:port/timeout_url\",
+  \"Remarks\":\" \",
+  \"Occasion\":\" \"
+}" "https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request"

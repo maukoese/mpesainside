@@ -11,18 +11,27 @@ namespace Mauko;
 
 class MPESA{
 
-	private business;
-	private shortcode;
-	private key;
-	private secret;
-	private password;
-	private publicKey;
-	private timeout_url;
-	private result_url;
-	private confirmation_url;
-	private validation_url;
+	private $business;
+	private $shortcode;
+	private $key;
+	private $secret;
+	private $password;
+	private $publicKey;
+	private $timeout_url;
+	private $result_url;
+	private $confirmation_url;
+	private $validation_url;
 
-	public function __construct( $public_key = "cert.cr", $level = "sandbox" ){
+	private $authenticate_url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
+	private $b2c_request_url = "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
+	private $b2b_request_url = 'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest';
+	private $c2b_request_url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl';
+	private $simulate_url = 'https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate';
+	private $check_balance_url = 'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query';
+	private $reverse_transaction_url = 'https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request';
+	private $query_request_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query';
+
+	public function __construct( $public_key = "cert.cr", $environment = "sandbox" ){
 		$this -> business = MPESA_NAME;
 		$this -> shortcode = MPESA_SHORTCODE;
 		$this -> key = MPESA_KEY;
@@ -34,7 +43,7 @@ class MPESA{
 		$this -> confirmation_url = MPESA_CONFIRMATION_URL;
 		$this -> validation_url = MPESA_VALIDATION_URL;
 
-		if ( $level == "sandbox" ) {
+		if ( $environment !== "sandbox" ) {
 			$this -> authenticate_url = "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
 			$this -> b2c_request_url = "https://sandbox.safaricom.co.ke/mpesa/b2c/v1/paymentrequest";
 			$this -> b2b_request_url = 'https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest';
@@ -43,22 +52,21 @@ class MPESA{
 			$this -> check_balance_url = 'https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query';
 			$this -> reverse_transaction_url = 'https://sandbox.safaricom.co.ke/mpesa/reversal/v1/request';
 			$this -> query_request_url = 'https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query';
-		} else {
 		}
 	}
 
-	private function authenticate(){
+	private function auth(){
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $this -> authenticate_url );
-		$credentials = base64_encode($this -> key.':'.$this -> secret );
-		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Basic '.$credentials)); //setting a custom header
-		curl_setopt($curl, CURLOPT_HEADER, true);
-		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt( $curl, CURLOPT_URL, $this -> authenticate_url );
+		$credentials = base64_encode( $this -> key.':'.$this -> secret );
+		curl_setopt( $curl, CURLOPT_HTTPHEADER, array( 'Authorization: Basic '.$credentials ) ); //setting a custom header
+		curl_setopt( $curl, CURLOPT_HEADER, true );
+		curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false );
 
-		$curl_response = curl_exec($curl);
+		$curl_response = curl_exec( $curl );
 
-		return json_decode($curl_response);
+		return json_decode( $curl_response );
 	}
 
 	private function securityCredential(){
@@ -68,12 +76,11 @@ class MPESA{
 		return base64_encode( $encrypted );
 	}
 
-	private function b2cRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $Remarks = "", $Occasion = "" ){
-		//$this -> authenticate();
+	private function b2cRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $Remarks = null, $Occasion = null ){
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $this -> b2c_request_url );
-		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
+		curl_setopt( $curl, CURLOPT_URL, $this -> b2c_request_url );
+		curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN' ) ); //setting custom header
 
 
 		$curl_post_data = array(
@@ -90,23 +97,23 @@ class MPESA{
 		  'Occasion' => $Occasion
 		);
 
-		$data_string = json_encode($curl_post_data);
+		$data_string = json_encode( $curl_post_data );
 
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_POST, true);
-		curl_setopt($curl, CURLOPT_POSTFIELDS, $data_string);
+		curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $curl, CURLOPT_POST, true);
+		curl_setopt( $curl, CURLOPT_POSTFIELDS, $data_string );
 
-		$curl_response = curl_exec($curl);
-		print_r($curl_response);
+		$curl_response = curl_exec( $curl );
+		print_r( $curl_response );
 
 		return $curl_response;
 	}
 
-	private function b2bRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $SenderIdentifierType, $RecieverIdentifierType, $AccountReference, $Remarks = "", $Occasion = "" ){
+	private function b2bRequest( $InitiatorName, $CommandID, $Amount, $PartyB, $SenderIdentifierType, $RecieverIdentifierType, $AccountReference, $Remarks = null, $Occasion = null ){
 		$this -> authenticate();
 
 		$curl = curl_init();
-		curl_setopt($curl, CURLOPT_URL, $this -. b2b_request_url);
+		curl_setopt($curl, CURLOPT_URL, $this -> b2b_request_url);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json','Authorization:Bearer ACCESS_TOKEN')); //setting custom header
 
 
@@ -291,7 +298,7 @@ class MPESA{
 		echo $curl_response;
 	}
 	
-	public function pay(){
+	public function payNow( $PhoneNumber, $Amount, $TransactionType = 'CustomerPayBillOnline' ){
 		$url = 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
 
 		$curl = curl_init();
@@ -301,14 +308,14 @@ class MPESA{
 
 		$curl_post_data = array(
 		  //Fill in the request parameters with valid values
-		  'BusinessShortCode' => ' ',
-		  'Password' => ' ',
-		  'Timestamp' => ' ',
-		  'TransactionType' => 'CustomerPayBillOnline',
-		  'Amount"' => ' ',
-		  'PartyA' => ' ',
-		  'PartyB' => ' ',
-		  'PhoneNumber' => ' ',
+		  'BusinessShortCode' => $this -> shortcode,
+		  'Password' => $this -> password,
+		  'Timestamp' => date('yymmddhhiiss'),
+		  'TransactionType' => $TransactionType,
+		  'Amount"' => $Amount,
+		  'PartyA' => $this -> shortcode,
+		  //'PartyB' => $PartyB,
+		  'PhoneNumber' => $PhoneNumber,
 		  'CallBackURL' => 'https://ip_address:port/callback',
 		  'AccountReference' => ' ',
 		  'TransactionDesc' => ' '

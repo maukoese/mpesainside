@@ -1,0 +1,4 @@
+# With cUrl, you can just pass the correct header with each request
+curl -X GET https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials  \
+  -H "Accept: application/json" \
+  -u "YOUR_APP_CONSUMER_KEY:YOUR_APP_CONSUMER_SECRET"

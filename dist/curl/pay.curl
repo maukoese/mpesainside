@@ -1,0 +1,13 @@
+curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/json" -d "{
+  \"BusinessShortCode\": \" \",
+  \"Password\": \" \",
+  \"Timestamp\": \" \",
+  \"TransactionType\": \"CustomerPayBillOnline\",
+  \"Amount\": \" \",
+  \"PartyA\": \" \",
+  \"PartyB\": \" \",
+  \"PhoneNumber\": \" \",
+  \"CallBackURL\": \"https://ip_address:port/callback\",
+  \"AccountReference\": \" \",
+  \"TransactionDesc\": \" \"
+}" "https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest"

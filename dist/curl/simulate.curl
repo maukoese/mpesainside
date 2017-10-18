@@ -1,0 +1,7 @@
+curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/json" -d "{
+  \"ShortCode\":\" \",
+  \"CommandID\":\"CustomerPayBillOnline\",
+  \"Amount\":\" \",
+  \"Msisdn\":\" \",
+  \"BillRefNumber\":\" \"
+}" "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/simulate"

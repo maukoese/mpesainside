@@ -1,0 +1,6 @@
+curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/json" -d "{
+    \"ShortCode\":\" \",
+    \"ResponseType\":\" \",
+    \"ConfirmationURL\":\"http://ip_address:port/confirmation\",
+    \"ValidationURL\":\"http://ip_address:port/validation_url\"
+}" "https://sandbox.safaricom.co.ke/mpesa/c2b/v1/registerurl"

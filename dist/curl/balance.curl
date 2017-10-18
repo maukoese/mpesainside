@@ -1,0 +1,10 @@
+curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/json" -d "{
+    \"Initiator\":\"Initiator\",
+    \"SecurityCredential\":\"security credential\",
+    \"CommandID\":\"AccountBalance\",
+    \"PartyA\":\"shortcode\",
+    \"IdentifierType\":\"4\",
+    \"Remarks\":\"Remarks\",
+    \"QueueTimeOutURL\":\"https://ip_address:port/timeout_url\",
+    \"ResultURL\":\"https://ip_address:port/result_url\"
+}" "https://sandbox.safaricom.co.ke/mpesa/accountbalance/v1/query"

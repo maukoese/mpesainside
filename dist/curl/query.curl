@@ -1,0 +1,6 @@
+curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/json" -d "{
+  \"BusinessShortCode\":\" \" ,
+  \"Password\":\" \",
+  \"Timestamp\":\" \",
+  \"CheckoutRequestID\":\" \"
+}" "https://sandbox.safaricom.co.ke/mpesa/stkpushquery/v1/query"

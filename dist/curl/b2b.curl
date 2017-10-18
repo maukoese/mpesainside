@@ -1,0 +1,14 @@
+curl -X POST --header "Authorization: Bearer <Access-Token>" --header "Content-Type: application/json" -d "{
+  \"Initiator\": \" \",
+  \"SecurityCredential\": \" \",
+  \"CommandID\": \" \",
+  \"SenderIdentifierType\": \" \",
+  \"RecieverIdentifierType\": \" \",
+  \"Amount\": \" \",
+  \"PartyA\": \" \",
+  \"PartyB\": \" \",
+  \"AccountReference\": \" \",
+  \"Remarks\": \" \",
+  \"QueueTimeOutURL\": \"http://your_timeout_url\",
+  \"ResultURL\": \"http://your_result_url\"
+}" "https://sandbox.safaricom.co.ke/mpesa/b2b/v1/paymentrequest"

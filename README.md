@@ -1,4 +1,4 @@
-# MPESAOPay
+# MPESA Inside
 Simplified Lipa Na MPESA Online integration. [Site](https:maukoese.github.io/mpesainside)
 
 ## Getting Started
