@@ -11,6 +11,7 @@
 
     <link href="assets/min/plugin-min.css" type="text/css" rel="stylesheet">
     <link href="assets/min/custom-min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -35,21 +36,20 @@
     <nav id="nav_f" class="green" role="navigation">
         <div class="container">
             <div class="nav-wrapper">
-            <a href="#" id="logo-container" class="brand-logo">MPESAIn</a>
+            <a href="./" id="logo-container" class="brand-logo">MPESAIn</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="#intro">About</a></li>
-                    <li><a href="#start">Get Started</a></li>
-                    <li><a href="#work">Showcase</a></li>
-                    <li><a href="#team">Contributors</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="download.html">Download</a></li>
+                    <li><a href="start.html">Get Started</a></li>
+                    <!-- <li><a href="#work">Showcase</a></li> -->
+                    <li><a href="https://github.com/maukoese/mpesainside">Contribute</a></li>
+                    <li><a href="https://developer.safaricom.co.ke">Daraja</a></li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
                     <li><a href="#intro">About</a></li>
-                    <li><a href="#work">Showcase</a></li>
-                    <li><a href="#team">Contributors</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="download.html">Download</a></li>
+                    <li><a href="start.html">Get Started</a></li>
+                    <!-- <li><a href="#work">Showcase</a></li> -->
+                    <li><a href="https://github.com/maukoese/mpesainside">Contribute</a></li>
+                    <li><a href="https://developer.safaricom.co.ke">Daraja</a></li>
                 </ul>
             <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
             </div>
@@ -82,7 +82,7 @@
 
             <div  class="col s12 m3 l3">
                 <div class="center promo promo-example">
-                    <i class="mdi-cash"></i>
+                    <i class="mdi mdi-square-inc-cash"></i>
                     <h5 class="promo-caption">Free</h5>
                     <p class="light center">The code is free to download and use, and there are no charges for integrating this in a custom system</p>
                 </div>
@@ -117,31 +117,11 @@
     <div class="container">
         <div class="row">
             <div  class="col s12">
-                <p class="center header text_h2"> To integrate with PHP, grab a copy of the code from<span class="span_h2"> iHub, </span> here <span class="span_h2"> and</span> put both MPESA.php and cert.cr in a directory of your choice.</p>
-
-                <textarea class="materialize-textarea" data-editor="php" style="height: 600px; width: 100%" data-gutter="1" data-theme="monokai" >
-
-<?php 
-    define( 'MPESA_SHORTCODE', '123456');
-    define( 'MPESA_SHORTCODE', '123456');
-    define( 'MPESA_SHORTCODE', '123456');
-    define( 'MPESA_SHORTCODE', '123456');
-    define( 'MPESA_SHORTCODE', '123456');
-    
-
-    require_once( 'path/to/MPESA.php' );
-    $mpesa = new \Mauko\MPESA;
-
-    $amount = $_POST['amount'];
-    $phone = $_POST['phone'];
-
-    $payment = $mpesa -> payNow( $phone, $amount );
-
-    $details = json_decode( $payment, true );
-    $code = $details['code'];
-?>
-                        
-                    </textarea>
+                <p class="center header text_h2">
+                    <a href="start.html" class="btn waves-effect waves-light red btn-large">Get Started
+                        <i class="mdi mdi-forward right white-text"></i>
+                    </a>
+                </p>
             </div>
         </div>
     </div>
@@ -244,7 +224,7 @@
             </div>
         </div>
     </div>
-</div> --> -->
+</div> -->
 
 <!--Parallax-->
 <div class="parallax-container">
@@ -342,17 +322,17 @@
                         <span class="card-title activator grey-text text-darken-4">Kevin<br/>
                             <small><em><a class="red-text text-darken-1" href="#">Developer</a></em></small></span>
                         <p>
-                            <a class="blue-text text-lighten-2" href="https://www.facebook.com/joash.c.pereira">
-                                <i class="fa fa-facebook-square"></i>
+                            <a class="blue-text" href="https://www.facebook.com/joash.c.pereira">
+                                <i class="mdi mdi-facebook-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://twitter.com/im_joash">
-                                <i class="fa fa-twitter-square"></i>
+                            <a class="blue-text" href="https://twitter.com/im_joash">
+                                <i class="mdi mdi-twitter-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://plus.google.com/u/0/+JoashPereira">
-                                <i class="fa fa-google-plus-square"></i>
+                            <a class="blue-text" href="https://plus.google.com/u/0/+JoashPereira">
+                                <i class="mdi mdi-google-plus-square"></i>
                             </a>
-                            <a class="blue-text text-lighten-2" href="https://www.linkedin.com/in/joashp">
-                                <i class="fa fa-linkedin-square"></i>
+                            <a class="blue-text" href="https://www.linkedin.com/in/joashp">
+                                <i class="mdi mdi-linkedin-square blue-text"></i>
                             </a>
                         </p>
                     </div>
@@ -361,72 +341,6 @@
         </div>
     </div>
 </div>
-
-<!--Footer-->
-<footer id="contact" class="page-footer green scrollspy">
-    <div class="container">  
-        <div class="row">
-            <div class="col l6 s12">
-                <form class="col s12" action="contact.php" method="post">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="mdi-action-account-circle prefix white-text"></i>
-                            <input id="icon_prefix" name="name" type="text" class="validate white-text">
-                            <label for="icon_prefix" class="white-text">First Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="mdi-communication-email prefix white-text"></i>
-                            <input id="icon_email" name="email" type="email" class="validate white-text">
-                            <label for="icon_email" class="white-text">Email-id</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="mdi-editor-mode-edit prefix white-text"></i>
-                            <textarea id="icon_prefix2" name="message" class="materialize-textarea white-text"></textarea>
-                            <label for="icon_prefix2" class="white-text">Message</label>
-                        </div>
-                        <div class="col offset-s7 s5">
-                            <button class="btn waves-effect waves-light red darken-1" type="submit">Submit
-                                <i class="mdi-content-send right white-text"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">&copy; mpesainside</h5>
-                <ul>
-                    <li><a class="white-text" href="http://www.joashpereira.com/">Home</a></li>
-                    <li><a class="white-text" href="http://www.joashpereira.com/blog">Blog</a></li>
-                </ul>
-            </div>
-            <div class="col l3 s12">
-                <h5 class="white-text">Social</h5>
-                <ul>
-                    <li>
-                        <a class="white-text" href="https://www.behance.net/joashp">
-                            <i class="small fa fa-behance-square white-text"></i> Behance
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://www.facebook.com/joash.c.pereira">
-                            <i class="small mdi-facebook white-text"></i> Facebook
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://github.com/joashp">
-                            <i class="small mdi-github white-text"></i> Github
-                        </a>
-                    </li>
-                    <li>
-                        <a class="white-text" href="https://www.linkedin.com/in/joashp">
-                            <i class="small mdi-linkedin white-text"></i> Linkedin
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
 <script>
   // Hook up ACE editor to all textareas with data-editor attribute

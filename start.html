@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="theme-color" content="#2196F3">
+    <title>Get Started - MPESA Inside</title>
+
+    <!-- CSS  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+    <link href="assets/min/plugin-min.css" type="text/css" rel="stylesheet">
+    <link href="assets/min/custom-min.css" type="text/css" rel="stylesheet" >
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/2.0.46/css/materialdesignicons.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+</head>
+<body id="top" class="scrollspy red">
+
+<!-- Pre Loader -->
+<div id="loader-wrapper">
+    <div id="loader"></div>
+ 
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+ 
+</div>
+<style type="text/css">
+    nav .button-collapse {   
+        padding-left: 10px;
+    }
+</style>
+<!--Navigation-->
+ <div class="navbar-fixed">
+    <nav id="nav_f" class="green" role="navigation">
+        <div class="container">
+            <div class="nav-wrapper">
+            <a href="./" id="logo-container" class="brand-logo">MPESAIn</a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="#intro">About</a></li>
+                    <li><a href="start.html">Get Started</a></li>
+                    <!-- <li><a href="#work">Showcase</a></li> -->
+                    <li><a href="#team">Contributors</a></li>
+                    <li><a href="https://developer.safaricom.co.ke">Daraja</a></li>
+                </ul>
+                <ul id="nav-mobile" class="side-nav">
+                    <li><a href="#intro">About</a></li>
+                    <li><a href="start.html">Get Started</a></li>
+                    <!-- <li><a href="#work">Showcase</a></li> -->
+                    <li><a href="#team">Contributors</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<!--Intro and service-->
+<div id="intro" class="section scrollspy">
+    <div class="container">
+        <div class="row">
+            <div  class="col s12">
+                <h5 class="center header text_h2"> Integrating <span class="span_h2"> MPESA Inside </span> is as easy as <span class="span_h2"> getting the code </span> and including it. </h5>
+            </div>
+        </div>
+
+        <div class="row">
+            <div  class="col s12">
+                <ul id="tabs-swipe-demo" class="tabs">
+                    <li class="tab col s3"><a class="active" href="#test-swipe-1">PHP</a></li>
+                    <li class="tab col s3"><a href="#test-swipe-2">Python</a></li>
+                    <li class="tab col s3"><a href="#test-swipe-3">Node JS</a></li>
+                    <li class="tab col s3"><a href="#test-swipe-3">Ruby</a></li>
+                    <li class="tab col s3"><a href="#test-swipe-3">Curl</a></li>
+                  </ul>
+                  <div id="test-swipe-1" class="col s12" style="width: 100%;">
+                    <h5>PHP Integration</h5><a href="#">Download Code Here</a>
+                <textarea class="materialize-textarea" data-editor="php" style="height: 450px; width: 930px" data-gutter="1" data-theme="chrome" >
+<?php 
+    define( 'MPESA_SHORTCODE', '123456');
+    define( 'MPESA_BUSINESS_NAME', 'Your Business Name');
+    define( 'MPESA_APP_KEY', '1rrf8gr7rrff997er7eef');
+    define( 'MPESA_APP_SECRET', 'fdff8ff7rr3re0frgr94rrff9eeefe78f3ref9efre8');
+
+    require_once( 'path/to/MPESA.php' );
+    $mpesa = new \Mauko\MPESA;
+
+    $amount = $_POST['amount'];
+    $phone = $_POST['phone'];
+
+    $payment = $mpesa -> payNow( $phone, $amount );
+
+    $details = json_decode( $payment, true );
+    $code = $details['code'];
+                    </textarea></div>
+                  <div id="test-swipe-2" class="col s12 red">Test 2</div>
+                  <div id="test-swipe-3" class="col s12 green">Test 3</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Parallax-->
+<div class="parallax-container">
+    <div class="parallax"><img src="assets/img/parallax1.png"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" type="text/javascript" charset="utf-8"></script>
+<script>
+  // Hook up ACE editor to all textareas with data-editor attribute
+  // Mode and theme are loaded fron text area attributes
+$(function() {
+  $('textarea[data-editor]').each(function() {
+    var textarea = $(this);
+    var mode = textarea.data('editor');
+    var theme = textarea.data('theme');
+    var editDiv = $('<div>', {
+      position: 'absolute',
+      width: textarea.width(),
+      height: textarea.height(),
+      'class': textarea.attr('class')
+    }).insertBefore(textarea);
+    textarea.css('display', 'none');
+    var editor = ace.edit(editDiv[0]);
+    editor.renderer.setShowGutter(textarea.data('gutter'));
+    editor.getSession().setValue(textarea.val());
+    editor.getSession().setMode("ace/mode/" + mode);
+    editor.setTheme("ace/theme/" + theme );
+
+    // copy back to textarea on form submit...
+    textarea.closest('form').submit(function() {
+      textarea.val(editor.getSession().getValue());
+    })
+  });
+});
+</script>
+
+
+    <!--  Scripts-->
+    <script src="assets/min/plugin-min.js"></script>
+    <script src="assets/min/custom-min.js"></script>
+
+    </body>
+</html>

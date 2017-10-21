@@ -10,7 +10,7 @@ There is sample code in [use.x] in the respective language directories to get yo
 
 Grab a copy of the code from [here](#) and put the MPESA.php in a directory of your choice. Include the MPESA.php file in your code and follow the instructions set out in the howto.__ files
 
-## Running the tests
+## Configuration
 
 Explain how to run the automated tests for this system
 
