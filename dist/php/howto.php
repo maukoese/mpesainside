@@ -19,12 +19,12 @@ define('MPESA_VALIDATION_URL', 'http://yoururl.tld/validation');
 
 require_once( 'MPESA.php' );
 
-$mpesa = new \Mauko\MPESA();
+$mpesa = new \Safaricom\MPESA();
 
 /*
 * C2B
 */
-$request = $mpesa -> b2cRequest( $InitiatorName, $CommandID, $Amount, $PartyB );
+$request = $mpesa -> c2b( $InitiatorName, $CommandID, $Amount, $PartyB );
 
 echo $request;
 
